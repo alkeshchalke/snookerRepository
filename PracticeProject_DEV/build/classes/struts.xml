@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+
+	<package name="default" extends="struts-default" namespace="/">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<action name="">
+			<result type="tiles">login</result>
+		</action>
+
+		<action name="login" class="com.projectwork.action.LoginAction">
+			<result name="success" type="redirect">/LogTimeTabAction.action</result>
+			<result name="endOfDay" type="redirect">/EndOfDayAction.action</result>
+			<result name="resetPassword" type="tiles">resetPassword</result>
+			<result name="error" type="tiles">login</result>
+		</action>
+
+		<action name="LogoutAction" class="com.projectwork.action.LogoutAction">
+			<result name="success" type="tiles">login</result>
+		</action>
+
+		<action name="DashboardAction" class="com.projectwork.action.LoginAction">
+			<result name="success" type="tiles">logTimeTab</result>
+			<result name="error" type="tiles">login</result>
+		</action>
+
+		<!-- Tabbed Panels -->
+
+		<action name="LogTimeTabAction" class="com.projectwork.action.logTime.LogTimeTabAction">
+			<result name="success" type="tiles">logTimeTab</result>
+			<result name="endOfDay" type="redirect">/EndOfDayAction.action</result>
+			<result name="error" type="tiles">login</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="LogTimeTabAddRecordAction"
+			class="com.projectwork.action.logTime.LogTimeTabAddRecordAction">
+			<result name="success" type="redirect">/LogTimeTabAction.action</result>
+			<result name="error" type="redirect">/LogTimeTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="ViewLogTimeCustomerDetailsAction"
+			class="com.projectwork.action.logTime.ViewLogTimeCustomerDetailsAction">
+			<result name="success" type="tiles">viewLogTimeCustDetails</result>
+			<result name="error" type="redirect">/LogTimeTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="UpdateCustomerBeveragesAction"
+			class="com.projectwork.action.logTime.UpdateCustomerBeveragesAction">
+			<result name="success" type="redirect">/ViewLogTimeCustomerDetailsAction.action
+			</result>
+			<result name="error" type="redirect">/LogTimeTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="UpdateBusinessCustomerAction"
+			class="com.projectwork.action.logTime.UpdateBusinessCustomerAction">
+			<result name="success" type="redirect">/LogTimeTabAction.action</result>
+			<result name="error" type="redirect">/LogTimeTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="PayCustomerCurrentBillAction"
+			class="com.projectwork.action.logTime.PayCustomerCurrentBillAction">
+			<result name="success" type="redirect">/LogTimeTabAction.action	</result>
+			<result name="error" type="redirect">/LogTimeTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="PayCustomerHistoryBillsAction"
+			class="com.projectwork.action.logTime.PayCustomerHistoryBillsAction">
+			<result name="success" type="redirect">/SearchForCustomerAction.action	</result>
+			<result name="error" type="redirect">/SearchForCustomerAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!-- Business Tab -->
+
+		<action name="ShowBusinessDayInformationAction"
+			class="com.projectwork.action.business.ShowBusinessDayInformationAction">
+			<result name="success" type="tiles">showBusinessDayInformation
+			</result>
+			<result name="error" type="tiles">showBusinessDayInformation</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="EndOfDayConfirmationPromptAction"
+			class="com.projectwork.action.business.EndOfDayConfirmationPromptAction">
+			<result name="success" type="tiles">endofDayConfirmation</result>
+			<result name="error" type="redirect">/ShowBusinessDayInformationAction.action
+			</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="EndOfDayAction" class="com.projectwork.action.business.EndOfDayAction">
+			<result name="success" type="tiles">showEODReport</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="ViewTodayReportAction" class="com.projectwork.action.business.ViewTodayReportAction">
+			<result name="success" type="tiles">showEODReport</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="ViewTablewiseReportAction" class="com.projectwork.action.business.tablewise.ViewTablewiseReportAction">
+			<result name="success" type="tiles">showTablewiseReport</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="ViewHistoricalReportAction" class="com.projectwork.action.business.ViewHistoricalReportAction">
+			<result name="success" type="tiles">showHistoricalReport</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="ExportEODReportAction"
+			class="com.projectwork.action.business.ExportEODReportAction">
+			<result name="error" type="tiles">showEODReport</result>
+			<result name="loginerror" type="tiles">login</result>
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="ExportEODExcelReportAction"
+			class="com.projectwork.action.business.ExportEODExcelReportAction">
+			<result name="error" type="tiles">showEODReport</result>
+			<result name="loginerror" type="tiles">login</result>
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="PrepareOldBusinessReportScreenAction"
+			class="com.projectwork.action.business.oldBusinessdatewise.PrepareOldBusinessReportScreenAction">
+			<result name="success" type="tiles">checkDatewiseBusiness</result>
+			<result name="error" type="tiles">showBusinessDayInformation</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="ShowOldBusinessDateReportAction"
+			class="com.projectwork.action.business.oldBusinessdatewise.ShowOldBusinessDateReportAction">
+			<result name="success" type="tiles">showDatewiseReport</result>
+			<result name="error" type="redirect">/PrepareOldBusinessReportScreenAction.action
+			</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="ExportOldBusinessReportAction"
+			class="com.projectwork.action.business.oldBusinessdatewise.ExportOldBusinessReportAction">
+			<result name="error" type="tiles">showEODReport</result>
+			<result name="loginerror" type="tiles">login</result>
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<!--  			  -->
+		<!-- Employee Tab -->
+		<!--  			  -->
+
+		<action name="Employee"
+			class="com.projectwork.action.employee.EmployeeTabAction">
+			<result name="success" type="tiles">addNewEmployee</result>
+			<result name="error" type="tiles">employeeTab</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="AddNewEmployeeAction"
+			class="com.projectwork.action.employee.AddNewEmployeeAction">
+			<result name="success" type="tiles">addEmployeeSuccess</result>
+			<result name="error" type="tiles">addNewEmployee</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!--  			  -->
+		<!-- Customer Tab -->
+		<!--  			  -->
+
+		<!-- Add New Customer -->
+
+		<action name="Customer"
+			class="com.projectwork.action.customer.add.CustomerTabAction">
+			<result name="success" type="tiles">addNewCustomer</result>
+			<result name="error" type="tiles">customerTab</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="AddNewCustomerAction"
+			class="com.projectwork.action.customer.add.AddNewCustomerAction">
+			<result name="success" type="tiles">addCustomerSuccess</result>
+			<result name="error" type="redirect">/Customer.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!-- Edit Existing Customer -->
+		
+		<action name="EditCustomerTabAction"
+			class="com.projectwork.action.customer.edit.EditCustomerTabAction">
+			<result name="success" type="tiles">populateCustomerRecordsForEdit</result>
+			<result name="error" type="tiles">populateCustomerRecordsForEdit</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="EditSelectedCustomerAction"
+			class="com.projectwork.action.customer.edit.EditSelectedCustomerAction">
+			<result name="success" type="tiles">editCustomer</result>
+			<result name="error" type="tiles">populateCustomerRecordsForEdit</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="UpdateCustomerInformationAction"
+			class="com.projectwork.action.customer.edit.UpdateCustomerInformationAction">
+			<result name="success" type="tiles">editCustomerSuccess</result>
+			<result name="error" type="redirect">/EditSelectedCustomerAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<!-- Remove Existing Customer -->
+		
+		<action name="DeleteCustomerTabAction"
+			class="com.projectwork.action.customer.delete.DeleteCustomerTabAction">
+			<result name="success" type="tiles">populateCustomersForDelete</result>
+			<result name="error" type="tiles">populateCustomersForDelete</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="DeleteCustomerConfirmationAction"
+			class="com.projectwork.action.customer.delete.DeleteCustomerConfirmationAction">
+			<result name="success" type="tiles">deleteCustomerConfirmation</result>
+			<result name="error" type="tiles">deleteCustomerConfirmation</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="DeleteCustomerPersistAction"
+			class="com.projectwork.action.customer.delete.DeleteCustomerPersistAction">
+			<result name="success" type="tiles">deleteCustomerSuccess</result>
+			<result name="error" type="redirect">/DeleteCustomerTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!-- Search Customer Records-->
+
+		<action name="SearchForCustomerAction"
+			class="com.projectwork.action.customer.view.SearchForCustomerAction">
+			<result name="success" type="tiles">searchForCustomerRecords</result>
+			<result name="error" type="tiles">customerTab</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="ViewSelectedCustomerRecords"
+			class="com.projectwork.action.customer.view.ViewSelectedCustomerRecords">
+			<result name="success" type="tiles">viewSearchedCustomerRecords
+			</result>
+			<result name="error" type="tiles">addNewCustomer</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!-- 			 -->
+		<!-- Matches Tab -->
+		<!-- 			 -->
+
+		<action name="MatchTabAction" class="com.projectwork.action.matches.MatchTabAction">
+			<result name="success" type="tiles">showOngoingMatchesDetails</result>
+			<result name="error" type="tiles">showOngoingMatchesDetails</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="ShowMatchOptionsFromSelectedFrameAction"
+			class="com.projectwork.action.matches.ShowMatchOptionsFromSelectedFrameAction">
+			<result name="SinglePlayer" type="redirect">/PrepareSinglePlayerMatchDetailsAction.action
+			</result>
+			<result name="DoublePlayer" type="redirect">/PrepareDoublesPlayerMatchDetailsAction.action
+			</result>
+			<result name="RD" type="redirect">/PrepareRDMatchDetailsAction.action
+			</result>
+			<result name="Shuffle" type="redirect">/PrepareShuffleMatchDetailsAction.action
+			</result>
+			<result name="Rummy" type="redirect">/PrepareRummyMatchDetailsAction.action
+			</result>
+			<result name="error" type="tiles">matchTab</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!-- Singles Match -->
+
+		<action name="PrepareSinglePlayerMatchDetailsAction"
+			class="com.projectwork.action.matches.singles.PrepareSinglePlayerMatchDetailsAction">
+			<result name="success" type="tiles">addSinglePlayerMatchDetails
+			</result>
+			<result name="error" type="tiles">matchTab</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="AddNewSinglesMatchAction"
+			class="com.projectwork.action.matches.singles.AddNewSinglesMatchAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="UpdateSinglesFrameCompletionDetailsAction"
+			class="com.projectwork.action.matches.singles.UpdateSinglesFrameCompletionDetailsAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!-- Doubles Match -->
+
+		<action name="PrepareDoublesPlayerMatchDetailsAction"
+			class="com.projectwork.action.matches.doubles.PrepareDoublesPlayerMatchDetailsAction">
+			<result name="success" type="tiles">addFirstDoublesTeam</result>
+			<result name="error" type="tiles">matchTab</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="AddSecondDoublesTeamAction"
+			class="com.projectwork.action.matches.doubles.AddSecondDoublesTeamAction">
+			<result name="success" type="tiles">addSecondDoublesTeam</result>
+			<result name="error" type="tiles">matchTab</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="AddNewDoublesMatchAction"
+			class="com.projectwork.action.matches.doubles.AddNewDoublesMatchAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="UpdateDoublesFrameCompletionDetailsAction"
+			class="com.projectwork.action.matches.doubles.UpdateDoublesFrameCompletionDetailsAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!-- RD -->
+
+		<action name="PrepareRDMatchDetailsAction"
+			class="com.projectwork.action.matches.rd.PrepareRDMatchDetailsAction">
+			<result name="success" type="tiles">addRDMatchDetails</result>
+			<result name="error" type="tiles">matchTab</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="AddNewRDMatchAction"
+			class="com.projectwork.action.matches.rd.AddNewRDMatchAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/PrepareRDMatchDetailsAction.action
+			</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="UpdateRDFrameCompletionDetailsAction"
+			class="com.projectwork.action.matches.rd.UpdateRDFrameCompletionDetailsAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="OptionsToAddPlayerInOngoingRDMatchAction"
+			class="com.projectwork.action.matches.rd.OptionsToAddPlayerInOngoingRDMatchAction">
+			<result name="success" type="tiles">addNewPlayersInRDMatch</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="UpdateOngoingRDMatchAction"
+			class="com.projectwork.action.matches.rd.UpdateOngoingRDMatchAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!-- Shuffle -->
+
+		<action name="PrepareShuffleMatchDetailsAction"
+			class="com.projectwork.action.matches.shuffle.PrepareShuffleMatchDetailsAction">
+			<result name="success" type="tiles">addShuffleMatchDetails</result>
+			<result name="error" type="tiles">matchTab</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="AddNewShuffleMatchAction"
+			class="com.projectwork.action.matches.shuffle.AddNewShuffleMatchAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/PrepareShuffleMatchDetailsAction.action
+			</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="UpdateShuffleFrameCompletionDetailsAction"
+			class="com.projectwork.action.matches.shuffle.UpdateShuffleFrameCompletionDetailsAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!-- Rummy -->
+
+		<action name="PrepareRummyMatchDetailsAction"
+			class="com.projectwork.action.matches.rummy.PrepareRummyMatchDetailsAction">
+			<result name="success" type="tiles">addRummyMatchDetails</result>
+			<result name="error" type="tiles">matchTab</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="AddNewRummyMatchAction"
+			class="com.projectwork.action.matches.rummy.AddNewRummyMatchAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/PrepareRummyMatchDetailsAction.action
+			</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="UpdateRummyFrameCompletionDetailsAction"
+			class="com.projectwork.action.matches.rummy.UpdateRummyFrameCompletionDetailsAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="DistributeAmountInAllPlayersAction"
+			class="com.projectwork.action.matches.rummy.DistributeAmountInAllPlayersAction">
+			<result name="success" type="tiles">showRummyMatchPlayersContributions</result>
+			<result name="showPlayerContributionPage" type="redirect">/ShowPlayerContributionPageAction.action</result>
+			<result name="showPlayerDiffContributionPage" type="redirect">/ShowPlayerDiffContributionPageAction.action</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		
+		<action name="ShowPlayerContributionPageAction"
+			class="com.projectwork.action.matches.rummy.ShowPlayerContributionPageAction">
+			<result name="success" type="tiles">showRummyMatchPlayersContributions</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<action name="ShowPlayerDiffContributionPageAction"
+			class="com.projectwork.action.matches.rummy.ShowPlayerDiffContributionPageAction">
+			<result name="success" type="tiles">showRummyMatchPlayersContributions</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+		
+		<!-- Finish/Cancel Match -->
+
+		<action name="FinishMatchAction" class="com.projectwork.action.matches.FinishMatchAction">
+			<result name="SinglePlayer" type="tiles">finishOngoingSinglesMatch
+			</result>
+			<result name="DoublePlayer" type="tiles">finishOngoingDoublesMatch
+			</result>
+			<result name="RD" type="tiles">finishOngoingRDMatch</result>
+			<result name="Shuffle" type="tiles">finishOngoingShuffleMatch</result>
+			<result name="Rummy" type="tiles">finishOngoingRummyMatch</result>
+			<result name="error" type="tiles">empty</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<action name="CancelMatchAction" class="com.projectwork.action.matches.CancelMatchAction">
+			<result name="success" type="redirect">/MatchTabAction.action</result>
+			<result name="error" type="redirect">/MatchTabAction.action</result>
+			<result name="loginerror" type="tiles">login</result>
+		</action>
+
+		<!-- Configure Tab -->
+
+		<action name="customer-form">
+			<result name="success" type="tiles">customer.tiles</result>
+		</action>
+	</package>
+</struts>

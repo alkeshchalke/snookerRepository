@@ -1,0 +1,23 @@
+
+//	Create a new user.
+CREATE USER 'snookeruser'@'localhost' IDENTIFIED BY 'snookeruser';
+GRANT ALL PRIVILEGES ON * . * TO 'snookeruser'@'localhost';
+
+// Verify if the user was created.
+SELECT User FROM mysql.user;
+
+//	Create a new database for the created user.
+CREATE DATABASE snookerdb;
+
+-- Show Database
+SHOW DATABASES;
+
+//	Switch to new created database
+USE snookerdb;
+
+
+//	Create all custom tables one by one and verify each table creation using below commands:
+
+DESCRIBE <tablename>;
+SHOW TABLES;
+

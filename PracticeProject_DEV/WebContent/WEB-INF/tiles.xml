@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="layout" template="/web/layout/layout.jsp">
+		<put-attribute name="title" value="TestProject" />
+		<put-attribute name="header" value="/web/layout/header.jsp" />
+		<put-attribute name="tabbedpanel" value="/web/layout/panel.jsp" />
+		<put-attribute name="subpanel" value="/web/layout/empty.jsp" />
+		<put-attribute name="body" value="/login.jsp" />
+		<put-attribute name="footer" value="/web/layout/footer.jsp" />
+	</definition>
+
+	<definition name="settingsLayout" extends="layout">
+		<put-attribute name="settingspanel" value="/web/layout/subpaneljsp" />
+	</definition>
+
+	<definition name="login" extends="layout">
+		<put-attribute name="tabbedpanel" value="/web/layout/empty.jsp" />
+		<put-attribute name="body" value="/login.jsp" />
+	</definition>
+
+	<definition name="forgotPassword" extends="login">
+		<put-attribute name="title" value="Forgot Password" />
+		<put-attribute name="body" value="/web/forgotPassword.jsp" />
+	</definition>
+
+	<definition name="resetPassword" extends="login">
+		<put-attribute name="title" value="Reset Password" />
+		<put-attribute name="body" value="/web/resetPassword.jsp" />
+	</definition>
+
+	<definition name="welcome" extends="layout">
+		<put-attribute name="body" value="/welcome.jsp" />
+	</definition>
+
+
+	<!-- Tabbed Panels -->
+
+	<definition name="dashboard" extends="layout">
+		<put-attribute name="title" value="Log Time" />
+		<put-attribute name="body" value="/web/tabs/logTime/logTimeTab.jsp" />
+	</definition>
+
+	<definition name="logTimeTab" extends="layout">
+		<put-attribute name="title" value="Log Time" />
+		<put-attribute name="body" value="/web/tabs/logTime/logTimeTab.jsp" />
+	</definition>
+
+	<definition name="viewLogTimeCustDetails" extends="layout">
+		<put-attribute name="title" value="View Customer Beverage Details" />
+		<put-attribute name="body"
+			value="/web/tabs/logTime/viewLogTimeCustDetails.jsp" />
+	</definition>
+
+	<definition name="updateCustomerBeverageDetails" extends="layout">
+		<put-attribute name="title" value="Update Customer Beverage Details" />
+		<put-attribute name="body"
+			value="/web/tabs/logTime/updateCustomerBeverageDetails.jsp" />
+	</definition>
+
+	<!-- Employee Tab -->
+
+	<definition name="addNewEmployee" extends="layout">
+		<put-attribute name="title" value="Add New Employee" />
+		<put-attribute name="body"
+			value="/web/tabs/employee/addNewEmployee.jsp" />
+	</definition>
+
+	<definition name="addEmployeeSuccess" extends="layout">
+		<put-attribute name="title" value="Employee Added Successfully" />
+		<put-attribute name="body"
+			value="/web/tabs/employee/addEmployeeSuccess.jsp" />
+	</definition>
+
+	<!-- Customer Tab -->
+
+	<definition name="addNewCustomer" extends="layout">
+		<put-attribute name="title" value="Customer" />
+		<put-attribute name="subpanel" value="/web/layout/subpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/customer/addNewCustomer.jsp" />
+	</definition>
+
+	<definition name="addCustomerSuccess" extends="layout">
+		<put-attribute name="title" value="Customer Added Successfully" />
+		<put-attribute name="subpanel" value="/web/layout/subpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/customer/addCustomerSuccess.jsp" />
+	</definition>
+
+	<definition name="searchForCustomerRecords" extends="layout">
+		<put-attribute name="title" value="Search for Customer" />
+		<put-attribute name="subpanel" value="/web/layout/subpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/customer/searchForCustomerRecords.jsp" />
+	</definition>
+
+
+	<definition name="viewSearchedCustomerRecords" extends="layout">
+		<put-attribute name="title" value="Customer Business Records" />
+		<put-attribute name="subpanel" value="/web/layout/subpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/customer/viewCustomerRecords.jsp" />
+	</definition>
+
+	<definition name="populateCustomerRecordsForEdit" extends="layout">
+		<put-attribute name="title" value="Populate Customer Record for edit" />
+		<put-attribute name="subpanel" value="/web/layout/subpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/customer/populateCustomerRecordsForEdit.jsp" />
+	</definition>
+	
+	<definition name="editCustomer" extends="layout">
+		<put-attribute name="title" value="Edit Selected Customer Record" />
+		<put-attribute name="subpanel" value="/web/layout/subpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/customer/editCustomer.jsp" />
+	</definition>
+	
+	<definition name="editCustomerSuccess" extends="layout">
+		<put-attribute name="title" value="Edit Customer Success" />
+		<put-attribute name="subpanel" value="/web/layout/subpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/customer/editCustomerSuccess.jsp" />
+	</definition>
+	
+	<definition name="populateCustomersForDelete" extends="layout">
+		<put-attribute name="title" value="Populate Customer Record for delete" />
+		<put-attribute name="subpanel" value="/web/layout/subpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/customer/delete/populateCustomersForDelete.jsp" />
+	</definition>
+	
+	<definition name="deleteCustomerConfirmation" extends="layout">
+		<put-attribute name="title" value="Delete Customer Confirmation" />
+		<put-attribute name="subpanel" value="/web/layout/subpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/customer/delete/deleteCustomerConfirmation.jsp" />
+	</definition>
+	
+	<definition name="deleteCustomerSuccess" extends="layout">
+		<put-attribute name="title" value="Delete Customer Success" />
+		<put-attribute name="subpanel" value="/web/layout/subpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/customer/delete/deleteCustomerSuccess.jsp" />
+	</definition>
+
+	<!-- Matches Tab -->
+
+	<definition name="showOngoingMatchesDetails" extends="layout">
+		<put-attribute name="title" value="Show Ongoing Matches" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/showOngoingMatchesDetails.jsp" />
+	</definition>
+	
+	<!-- Matches Tab : Singles -->
+		
+	<definition name="addSinglePlayerMatchDetails" extends="layout">
+		<put-attribute name="title" value="Add/View Single Players Match" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/singles/addSinglePlayerMatchDetails.jsp" />
+	</definition>
+	
+	<definition name="finishOngoingSinglesMatch" extends="layout">
+		<put-attribute name="title" value="Finish The Singles Match" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/singles/finishOngoingSinglesMatch.jsp" />
+	</definition>
+	
+	<!-- Matches Tab : Doubles -->
+	
+	<definition name="addFirstDoublesTeam" extends="layout">
+		<put-attribute name="title" value="Add First Doubles Team" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/doubles/addFirstDoublesTeam.jsp" />
+	</definition>
+	
+	<definition name="addSecondDoublesTeam" extends="layout">
+		<put-attribute name="title" value="Add Second Doubles Team" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/doubles/addSecondDoublesTeam.jsp" />
+	</definition>
+	
+	<definition name="finishOngoingDoublesMatch" extends="layout">
+		<put-attribute name="title" value="Finish The Doubles Match" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/doubles/finishOngoingDoublesMatch.jsp" />
+	</definition>
+	
+	<!-- Matches Tab : RD -->
+	
+	<definition name="addRDMatchDetails" extends="layout">
+		<put-attribute name="title" value="Add/View RD Match" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/rd/addRDMatchDetails.jsp" />
+	</definition>
+	
+	<definition name="addNewPlayersInRDMatch" extends="layout">
+		<put-attribute name="title" value="Add New Players in The RD Match" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/rd/addNewPlayersInRDMatch.jsp" />
+	</definition> 
+	
+	<definition name="finishOngoingRDMatch" extends="layout">
+		<put-attribute name="title" value="Finish The RD Match" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/rd/finishOngoingRDMatch.jsp" />
+	</definition>
+	
+	<!-- Matches Tab : Shuffle -->
+	
+	<definition name="addShuffleMatchDetails" extends="layout">
+		<put-attribute name="title" value="Add/View Shuffle Match" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/shuffle/addShuffleMatchDetails.jsp" />
+	</definition>
+	
+	<definition name="finishOngoingShuffleMatch" extends="layout">
+		<put-attribute name="title" value="Finish The Shuffle Match" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/shuffle/finishOngoingShuffleMatch.jsp" />
+	</definition> 
+
+			
+	<!-- Matches Tab : Rummy -->
+	
+	<definition name="addRummyMatchDetails" extends="layout">
+		<put-attribute name="title" value="Add/View Rummy Match" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/rummy/addRummyMatchDetails.jsp" />
+	</definition>
+	
+	<definition name="finishOngoingRummyMatch" extends="layout">
+		<put-attribute name="title" value="Finish The Rummy Match" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/rummy/finishOngoingRummyMatch.jsp" />
+	</definition> 
+	
+	<definition name="showRummyMatchPlayersContributions" extends="layout">
+		<put-attribute name="title" value="Show Rummy Match Players Contributions" />
+		<put-attribute name="body"
+			value="/web/tabs/matches/rummy/showRummyMatchPlayersContributions.jsp" />
+	</definition> 
+
+	<!-- Business -->
+	
+	<definition name="showBusinessDayInformation" extends="layout">
+		<put-attribute name="title" value="Business Information" />
+		<put-attribute name="subpanel" value="/web/layout/eodsubpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/business/showBusinessDayInformation.jsp" />
+	</definition>
+
+	<definition name="endofDayConfirmation" extends="layout">
+		<put-attribute name="title" value="End Of Day Confirmation" />
+		<put-attribute name="subpanel" value="/web/layout/eodsubpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/business/endofDayConfirmation.jsp" />
+	</definition>
+
+	<definition name="showEODReport" extends="layout">
+		<put-attribute name="title" value="Show Today's Report" />
+		<put-attribute name="subpanel" value="/web/layout/eodsubpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/business/showEODReport.jsp" />
+	</definition>
+	
+	<definition name="showTablewiseReport" extends="layout">
+		<put-attribute name="title" value="Show Table wise Report" />
+		<put-attribute name="subpanel" value="/web/layout/eodsubpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/business/showTablewiseReport.jsp" />
+	</definition>
+	
+	<definition name="showHistoricalReport" extends="layout">
+		<put-attribute name="title" value="Show Historical Report" />
+		<put-attribute name="subpanel" value="/web/layout/eodsubpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/business/showHistoricalReport.jsp" />
+	</definition>
+	
+	<definition name="checkDatewiseBusiness" extends="layout">
+		<put-attribute name="title" value="Date Wise Business Check" />
+		<put-attribute name="subpanel" value="/web/layout/eodsubpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/business/oldBusiness/checkDatewiseBusiness.jsp" />
+	</definition>
+	
+	<definition name="showDatewiseReport" extends="layout">
+		<put-attribute name="title" value="Show Date Wise Business Check" />
+		<put-attribute name="subpanel" value="/web/layout/eodsubpanel.jsp" />
+		<put-attribute name="body"
+			value="/web/tabs/business/oldBusiness/showDatewiseReport.jsp" />
+	</definition>
+
+	<definition name="empty" extends="layout">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body"
+			value="/web/layout/empty.jsp" />
+	</definition>
+
+</tiles-definitions>
